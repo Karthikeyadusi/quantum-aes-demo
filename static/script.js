@@ -3,7 +3,9 @@ let iv = '';
 
 // -------- Generate QRNG Key --------
 async function generateQRNG() {
-    const res = await fetch('http://127.0.0.1:5000/generate_qrng');
+
+// After (your Render URL)
+const res = await fetch('https://quantum-aes-demo.onrender.com/generate_qrng');
     const data = await res.json();
     key = data.key;
     iv = data.iv;
