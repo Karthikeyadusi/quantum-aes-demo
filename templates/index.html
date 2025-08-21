@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Quantum AES Demo</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -63,7 +63,7 @@
 </div>
 
 
-<script src="script.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 <script>
   // Toggle Sections
   const textBtn = document.getElementById('textBtn');
