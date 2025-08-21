@@ -6,16 +6,17 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 import base64
 import io
-from flask import send_from_directory
 
 
 
-app = Flask(__name__)
+from flask import send_from_directory, render_template
+
+app = Flask(__name__, template_folder='templates', static_folder='static')
 CORS(app)
 
 @app.route('/')
 def home():
-    return send_from_directory('frontend', 'index.html')
+    return render_template('index.html')
 # --- QRNG ---
 def generate_qrng(KEY_BITS=128, IV_BITS=128):
     qc = QuantumCircuit(1, 1)
