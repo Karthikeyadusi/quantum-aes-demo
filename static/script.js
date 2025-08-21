@@ -17,8 +17,7 @@ async function encryptText() {
     const text = document.getElementById('textInput').value.trim();
     if (!text) return alert("Enter some text to encrypt!");
 
-    const res = await fetch('https://quantum-aes-demo.onrender.com/encrypt_text
-',{
+    const res = await ('https://quantum-aes-demo.onrender.com/encrypt_text',{
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({text, key, iv})
@@ -37,8 +36,7 @@ async function decryptText() {
     const enc = document.getElementById('decInput').value.trim();
     if (!enc) return alert("Paste the encrypted text to decrypt!");
 
-    const res = await fetch('https://quantum-aes-demo.onrender.com/decrypt_text
-', {
+    const res = await fetch('https://quantum-aes-demo.onrender.com/decrypt_text', {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({encrypted: enc, key, iv})
@@ -85,8 +83,7 @@ async function encryptImage() {
     encPreview.dataset.encryptedImage = base64EncryptedImage;
 
     // Encrypt AES key using backend
-    const res = await fetch('https://quantum-aes-demo.onrender.com/encrypt_text
-', {
+    const res = await fetch('https://quantum-aes-demo.onrender.com/encrypt_text', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ text: Array.from(imageKey), key, iv })
@@ -108,8 +105,7 @@ async function decryptImage() {
     if (!encKey) return alert("Paste the encrypted key to decrypt!");
 
     // 1️⃣ Decrypt AES key using main QRNG key
-    const resKey = await fetch('https://quantum-aes-demo.onrender.com/decrypt_text
-', {
+    const resKey = await fetch('https://quantum-aes-demo.onrender.com/decrypt_text', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify({encrypted: encKey, key, iv})
