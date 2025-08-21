@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quantum AES Demo</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <h1>Encrypt / Decrypt using QRNG & AES</h1>
+
+  <!-- Toggle Buttons -->
+  <div class="toggle-buttons">
+    <button id="textBtn" class="active">Text</button>
+    <button id="imageBtn">Image</button>
+  </div>
+
+  <!-- Sections Container -->
+<div class="container">
+  <!-- Text Section -->
+  <div class="section" id="textSection">
+    <h2>Text Encryption</h2>
+    <textarea id="textInput" rows="4" placeholder="Enter text here"></textarea>
+    <div class="btn-group">
+      <button onclick="encryptText()">Encrypt</button>
+      <button onclick="decryptText()">Decrypt</button>
+    </div>
+  <p>Encrypted:  
+  <span id="encText"></span>
+  <i class="fa-regular fa-copy copy-icon" id="copyEncBtn" title="Copy to clipboard" style="display:none;"></i>
+</p>
+
+ <p>Enter text to decrypt:</p>
+<textarea id="decInput" rows="4" placeholder="Paste encrypted text here"></textarea>
+<div class="btn-group">
+  <button onclick="decryptText()">Decrypt</button>
+</div>
+<p>Decrypted: <span id="decText"></span></p>
+</div>
+
+ 
+<!-- Image Section -->
+<div class="section" id="imageSection">
+  <h2>Image Encryption</h2>
+  
+  <!-- File selection -->
+  <input type="file" id="imageInput">
+  
+  <div class="btn-group">
+<button id="encryptImgBtn">Encrypt Image</button>
+    <button onclick="decryptImage()">Decrypt Image</button>
+  </div>
+
+  <!-- Encrypted Key Preview & Copy -->
+  <p>Encrypted Image Key:  
+    <span id="encImgPreview"></span>
+    <i class="fa-regular fa-copy" id="copyEncImg" title="Copy to clipboard" style="display:none;"></i>
+  </p>
+
+  <!-- Decryption input box for pasted key -->
+  <p>Paste Encrypted Key to Decrypt:</p>
+  <input type="text" id="decImgInput" placeholder="Paste encrypted image key here">
+</div>
+
+
+<script src="script.js"></script>
+<script>
+  // Toggle Sections
+  const textBtn = document.getElementById('textBtn');
+  const imageBtn = document.getElementById('imageBtn');
+  const textSection = document.getElementById('textSection');
+  const imageSection = document.getElementById('imageSection');
+
+  textBtn.addEventListener('click', () => {
+    textSection.style.display = 'block';
+    imageSection.style.display = 'none';
+    textBtn.classList.add('active');
+    imageBtn.classList.remove('active');
+  });
+
+  imageBtn.addEventListener('click', () => {
+    textSection.style.display = 'none';
+    imageSection.style.display = 'block';
+    textBtn.classList.remove('active');
+    imageBtn.classList.add('active');
+  });
+
+  // Show Text section by default
+  textSection.style.display = 'block';
+  imageSection.style.display = 'none';
+</script>
+</body>
+</html>
