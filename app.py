@@ -8,13 +8,14 @@ import base64
 import io
 from flask import send_from_directory
 
-@app.route('/')
-def home():
-    return send_from_directory('frontend', 'index.html')
+
 
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def home():
+    return send_from_directory('frontend', 'index.html')
 # --- QRNG ---
 def generate_qrng(KEY_BITS=128, IV_BITS=128):
     qc = QuantumCircuit(1, 1)
