@@ -6,6 +6,11 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 import base64
 import io
+from flask import send_from_directory
+
+@app.route('/')
+def home():
+    return send_from_directory('frontend', 'index.html')
 
 app = Flask(__name__)
 CORS(app)
