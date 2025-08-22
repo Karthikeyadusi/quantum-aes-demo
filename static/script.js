@@ -86,7 +86,8 @@ async function encryptImage() {
     const res = await fetch('https://quantum-aes-demo.onrender.com/encrypt_text', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ text: Array.from(imageKey), key, iv })
+const imageKeyHex = Array.from(imageKey).map(b => b.toString(16).padStart(2,'0')).join('');
+body: JSON.stringify({ text: imageKeyHex, key, iv })
     });
     const data = await res.json();
 
@@ -111,7 +112,9 @@ async function decryptImage() {
         body: JSON.stringify({encrypted: encKey, key, iv})
     });
     const dataKey = await resKey.json();
-    const imageKeyBytes = new Uint8Array(dataKey.decrypted);
+const imageKeyBytes = new Uint8Array(
+    dataKey.decrypted.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
+);
 
     // 2️⃣ Get encrypted image from dataset
     const encPreview = document.getElementById('encImgPreview');
