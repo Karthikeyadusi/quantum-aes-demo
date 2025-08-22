@@ -88,6 +88,7 @@ const imageKeyHex = Array.from(imageKey).map(b => b.toString(16).padStart(2,'0')
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ text: imageKeyHex, key, iv })
+});
 
     const data = await res.json();
 
