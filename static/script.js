@@ -81,14 +81,14 @@ async function encryptImage() {
     // Store base64 in element dataset for later
     const encPreview = document.getElementById('encImgPreview');
     encPreview.dataset.encryptedImage = base64EncryptedImage;
+const imageKeyHex = Array.from(imageKey).map(b => b.toString(16).padStart(2,'0')).join('');
 
     // Encrypt AES key using backend
     const res = await fetch('https://quantum-aes-demo.onrender.com/encrypt_text', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-const imageKeyHex = Array.from(imageKey).map(b => b.toString(16).padStart(2,'0')).join('');
-body: JSON.stringify({ text: imageKeyHex, key, iv })
-    });
+    body: JSON.stringify({ text: imageKeyHex, key, iv })
+
     const data = await res.json();
 
     // Show encrypted key in preview
