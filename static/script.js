@@ -107,15 +107,25 @@ async function decryptImage() {
     if (!encKey) return alert("Paste the encrypted key to decrypt!");
 
     // 1️⃣ Decrypt AES key using main QRNG key
-    const resKey = await fetch('https://quantum-aes-demo.onrender.com/decrypt_text', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({encrypted: encKey, key, iv})
-    });
-    const dataKey = await resKey.json();
+  // Decrypt AES key using main QRNG key
+const resKey = await fetch('https://quantum-aes-demo.onrender.com/decrypt_text', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({encrypted: encKey, key, iv})
+});
+const dataKey = await resKey.json();
+
+// Ensure only hex characters and correct length
+let decryptedHex = dataKey.decrypted.trim();
+if (decryptedHex.length !== 32) { // 16 bytes * 2 hex chars per byte
+    throw new Error("Invalid decrypted AES key length");
+}
+
+// Convert hex string back to Uint8Array
 const imageKeyBytes = new Uint8Array(
-    dataKey.decrypted.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
+    decryptedHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
 );
+
 
     // 2️⃣ Get encrypted image from dataset
     const encPreview = document.getElementById('encImgPreview');
