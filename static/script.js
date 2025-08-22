@@ -17,7 +17,7 @@ async function encryptText() {
     const text = document.getElementById('textInput').value.trim();
     if (!text) return alert("Enter some text to encrypt!");
 
-    const res = await ('https://quantum-aes-demo.onrender.com/encrypt_text',{
+    const res = await  fetch('https://quantum-aes-demo.onrender.com/encrypt_text',{
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({text, key, iv})
