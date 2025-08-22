@@ -22,9 +22,10 @@
     <h2>Text Encryption</h2>
     <textarea id="textInput" rows="4" placeholder="Enter text here"></textarea>
     <div class="btn-group">
-      <button onclick="encryptText()">Encrypt</button>
-      <button onclick="decryptText()">Decrypt</button>
-    </div>
+  <button id="encryptTextBtn">Encrypt</button>
+  <button id="decryptTextBtn">Decrypt</button>
+</div>
+
   <p>Encrypted:  
   <span id="encText"></span>
   <i class="fa-regular fa-copy copy-icon" id="copyEncBtn" title="Copy to clipboard" style="display:none;"></i>
@@ -33,7 +34,7 @@
  <p>Enter text to decrypt:</p>
 <textarea id="decInput" rows="4" placeholder="Paste encrypted text here"></textarea>
 <div class="btn-group">
-  <button onclick="decryptText()">Decrypt</button>
+  <button id="decryptTextBtn">Decrypt</button>
 </div>
 <p>Decrypted: <span id="decText"></span></p>
 </div>
