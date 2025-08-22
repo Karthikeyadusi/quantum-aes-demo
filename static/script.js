@@ -166,8 +166,17 @@ function copyImageEncrypted() {
         .catch(err => console.error("Failed to copy image key:", err));
 }
 
-// -------- Attach Copy Listeners --------
 document.addEventListener('DOMContentLoaded', () => {
+    // Copy buttons
     document.getElementById('copyEncBtn').addEventListener('click', copyText);
     document.getElementById('copyEncImg').addEventListener('click', copyImageEncrypted);
+
+    // Text encryption/decryption
+    document.getElementById('encryptTextBtn').addEventListener('click', encryptText);
+    document.getElementById('decryptTextBtn').addEventListener('click', decryptText);
+
+    // Image encryption/decryption
+    document.getElementById('encryptImgBtn').addEventListener('click', encryptImage);
+    document.getElementById('decryptImgBtn').addEventListener('click', decryptImage);
 });
+
